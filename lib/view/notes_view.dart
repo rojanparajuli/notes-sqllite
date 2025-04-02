@@ -31,15 +31,12 @@ class NotesScreen extends StatelessWidget {
           centerTitle: true,
           elevation: 0,
           shape: const RoundedRectangleBorder(
-            borderRadius: BorderRadius.vertical(
-              bottom: Radius.circular(16),
-            ),
+            borderRadius: BorderRadius.vertical(bottom: Radius.circular(16)),
           ),
           actions: [
             IconButton(
               icon: const Icon(Icons.search, size: 26),
-              onPressed: () {
-              },
+              onPressed: () {},
             ),
           ],
         ),
@@ -145,7 +142,7 @@ class NotesScreen extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
           Image.asset(
-            'assets/fb3ba0fad6471819ee987dc4df45f189.jpg', 
+            'assets/fb3ba0fad6471819ee987dc4df45f189.jpg',
             height: 180,
             color: Colors.grey.withValues(alpha: 0.5),
           ),
@@ -164,9 +161,7 @@ class NotesScreen extends StatelessWidget {
             child: Text(
               'Tap the + button to create your first note',
               textAlign: TextAlign.center,
-              style: GoogleFonts.poppins(
-                color: Colors.grey.shade500,
-              ),
+              style: GoogleFonts.poppins(color: Colors.grey.shade500),
             ),
           ),
         ],
@@ -178,13 +173,10 @@ class NotesScreen extends StatelessWidget {
     return Card(
       elevation: 1,
       margin: const EdgeInsets.only(bottom: 16),
-      shape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.circular(12),
-      ),
+      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
       child: InkWell(
         borderRadius: BorderRadius.circular(12),
-        onTap: () {
-        },
+        onTap: () {},
         child: Padding(
           padding: const EdgeInsets.all(16),
           child: Row(
@@ -204,8 +196,10 @@ class NotesScreen extends StatelessWidget {
                           width: 60,
                           height: 60,
                           color: Colors.grey.shade200,
-                          child: const Icon(Icons.broken_image,
-                              color: Colors.grey),
+                          child: const Icon(
+                            Icons.broken_image,
+                            color: Colors.grey,
+                          ),
                         );
                       },
                     ),
@@ -216,11 +210,13 @@ class NotesScreen extends StatelessWidget {
                   width: 60,
                   height: 60,
                   decoration: BoxDecoration(
-                    color: Appcolor.primaryColor.withOpacity(0.1),
+                    color: Appcolor.primaryColor.withValues(alpha: 0.1),
                     borderRadius: BorderRadius.circular(8),
                   ),
-                  child: const Icon(Icons.note_alt_rounded,
-                      color: Appcolor.primaryColor),
+                  child: const Icon(
+                    Icons.note_alt_rounded,
+                    color: Appcolor.primaryColor,
+                  ),
                 ),
               const SizedBox(width: 16),
               Expanded(
@@ -237,22 +233,14 @@ class NotesScreen extends StatelessWidget {
                       maxLines: 2,
                       overflow: TextOverflow.ellipsis,
                     ),
-                    // if (note.createdAt != null) ...[
-                    //   const SizedBox(height: 4),
-                    //   Text(
-                    //     _formatDate(note.createdAt!),
-                    //     style: GoogleFonts.poppins(
-                    //       fontSize: 12,
-                    //       color: Colors.grey.shade600,
-                    //     ),
-                    //   ),
-                    // ],
                   ],
                 ),
               ),
               IconButton(
-                icon: const Icon(Icons.delete_outline_rounded,
-                    color: Colors.redAccent),
+                icon: const Icon(
+                  Icons.delete_outline_rounded,
+                  color: Colors.redAccent,
+                ),
                 onPressed: () {
                   _showDeleteDialog(context, note);
                 },
@@ -264,64 +252,57 @@ class NotesScreen extends StatelessWidget {
     );
   }
 
-  String _formatDate(DateTime date) {
-    return '${date.day}/${date.month}/${date.year}';
-  }
-
   void _showDeleteDialog(BuildContext context, Note note) {
     showDialog(
       context: context,
-      builder: (context) => AlertDialog(
-        title: Text(
-          'Delete Note',
-          style: GoogleFonts.poppins(
-            fontWeight: FontWeight.w600,
-          ),
-        ),
-        content: Text(
-          'Are you sure you want to delete this note?',
-          style: GoogleFonts.poppins(),
-        ),
-        shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(16),
-        ),
-        actions: [
-          TextButton(
-            onPressed: () => Navigator.pop(context),
-            child: Text(
-              'Cancel',
-              style: GoogleFonts.poppins(
-                color: Colors.grey.shade600,
-              ),
+      builder:
+          (context) => AlertDialog(
+            title: Text(
+              'Delete Note',
+              style: GoogleFonts.poppins(fontWeight: FontWeight.w600),
             ),
-          ),
-          TextButton(
-            onPressed: () {
-              context.read<NoteBloc>().add(DeleteNote(note.id!));
-              Navigator.pop(context);
-              ScaffoldMessenger.of(context).showSnackBar(
-                SnackBar(
-                  content: Text(
-                    'Note deleted',
-                    style: GoogleFonts.poppins(),
-                  ),
-                  behavior: SnackBarBehavior.floating,
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(12),
+            content: Text(
+              'Are you sure you want to delete this note?',
+              style: GoogleFonts.poppins(),
+            ),
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(16),
+            ),
+            actions: [
+              TextButton(
+                onPressed: () => Navigator.pop(context),
+                child: Text(
+                  'Cancel',
+                  style: GoogleFonts.poppins(color: Colors.grey.shade600),
+                ),
+              ),
+              TextButton(
+                onPressed: () {
+                  context.read<NoteBloc>().add(DeleteNote(note.id!));
+                  Navigator.pop(context);
+                  ScaffoldMessenger.of(context).showSnackBar(
+                    SnackBar(
+                      content: Text(
+                        'Note deleted',
+                        style: GoogleFonts.poppins(),
+                      ),
+                      behavior: SnackBarBehavior.floating,
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(12),
+                      ),
+                    ),
+                  );
+                },
+                child: Text(
+                  'Delete',
+                  style: GoogleFonts.poppins(
+                    color: Colors.redAccent,
+                    fontWeight: FontWeight.w500,
                   ),
                 ),
-              );
-            },
-            child: Text(
-              'Delete',
-              style: GoogleFonts.poppins(
-                color: Colors.redAccent,
-                fontWeight: FontWeight.w500,
               ),
-            ),
+            ],
           ),
-        ],
-      ),
     );
   }
 }
